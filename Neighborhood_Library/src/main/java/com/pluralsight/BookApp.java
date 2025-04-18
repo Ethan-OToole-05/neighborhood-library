@@ -5,8 +5,9 @@ import java.util.Scanner;
 public class BookApp {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int option = 0;
-        String clear = "";
+        int option = 0, bookOption = 0;
+        boolean continueOption = true;
+        String clear = "", letterOption, userName;
         Book[] library = new Book[20];
         library[0] = new Book(1, "9780439064866", "Harry Potter and the Chamber of Secrets", false, "");
         library[1] = new Book(2, "9780439136358", "Harry Potter and the Prisoner of Azkaban", false, "");
@@ -39,18 +40,37 @@ public class BookApp {
         clear = input.nextLine();
         switch (option) {
             case 1:
-                System.out.println("Here is all of our available books:");
-                for(Book book : library) {
-                    System.out.println("ID: " + book.getId() +" ISBN: " + book.getIsbn() + " Title: " + book.getTitle());
-                }
-                //show books screen
+                    System.out.println("Here is all of our available books:");
+                    for(Book book : library) {
+                        if(!book.isCheckedOut()) {
+                            System.out.println("ID: " + book.getId() +" ISBN: " + book.getIsbn() + " Title: " + book.getTitle());
+                        }
+                        else{
+                            continue;
+                        }
+                    }
+                    System.out.println("Would you like to check out a book? (Y/N)");
+                    letterOption = input.nextLine().toUpperCase();
+                    if(letterOption.charAt(0) == 'Y') {
+                        System.out.print("Please enter your name to check out: ");
+                        userName = input.nextLine();
+                        System.out.println("What book would you like to check out? (please select by ID number): ");
+                        bookOption = input.nextInt();
+                        clear = input.nextLine();
+                        for(Book book : library) {
+                            if(book.getId() == bookOption) {
+                                book.checkOut(userName);
+                            }
+                        }
+                        System.out.println("Thank you!");
+                    }
             case 2:
                 //Show Checked Out Books screen
             case 3:
                 //Exit
 
+        }
 
         }
 
     }
-}
