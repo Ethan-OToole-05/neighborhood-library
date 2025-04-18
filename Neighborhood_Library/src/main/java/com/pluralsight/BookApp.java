@@ -7,7 +7,7 @@ public class BookApp {
         Scanner input = new Scanner(System.in);
         int option = 0, bookOption = 0;
         boolean continueOption = true;
-        String clear = "", letterOption, userName;
+        String clear = "", letterOption, continueLetterOption, userName;
         Book[] library = new Book[20];
         library[0] = new Book(1, "9780439064866", "Harry Potter and the Chamber of Secrets", false, "");
         library[1] = new Book(2, "9780439136358", "Harry Potter and the Prisoner of Azkaban", false, "");
@@ -29,48 +29,60 @@ public class BookApp {
         library[17] = new Book(18, "9780553380163", "A Brief History of Time", false, "");
         library[18] = new Book(19, "9781982103538", "The Body", false, "");
         library[19] = new Book(20, "9780307743664", "Carrie", false, "");
+    while(continueOption) {
+
 
         System.out.println("Welcome to the book store!");
-        System.out.println("Please select an option below: ");
-        System.out.println("1 - Show Available Books ");
-        System.out.println("2 - Show Checked Out Books ");
-        System.out.println("3 - Exit Store");
+        optionsDisplay();
         option = input.nextInt();
 
         clear = input.nextLine();
         switch (option) {
             case 1:
-                    System.out.println("Here is all of our available books:");
-                    for(Book book : library) {
-                        if(!book.isCheckedOut()) {
-                            System.out.println("ID: " + book.getId() +" ISBN: " + book.getIsbn() + " Title: " + book.getTitle());
-                        }
-                        else{
-                            continue;
+                System.out.println("Here is all of our available books:");
+                for (Book book : library) {
+                    if (!book.isCheckedOut()) {
+                        System.out.println("ID: " + book.getId() + " ISBN: " + book.getIsbn() + " Title: " + book.getTitle());
+                    } else {
+                        continue;
+                    }
+                }
+                System.out.println("Would you like to check out a book? (Y/N)");
+                letterOption = input.nextLine().toUpperCase();
+                if (letterOption.charAt(0) == 'Y') {
+                    System.out.print("Please enter your name to check out: ");
+                    userName = input.nextLine();
+                    System.out.println("What book would you like to check out? (please select by ID number): ");
+                    bookOption = input.nextInt();
+                    clear = input.nextLine();
+                    for (Book book : library) {
+                        if (book.getId() == bookOption) {
+                            book.checkOut(userName);
                         }
                     }
-                    System.out.println("Would you like to check out a book? (Y/N)");
-                    letterOption = input.nextLine().toUpperCase();
-                    if(letterOption.charAt(0) == 'Y') {
-                        System.out.print("Please enter your name to check out: ");
-                        userName = input.nextLine();
-                        System.out.println("What book would you like to check out? (please select by ID number): ");
-                        bookOption = input.nextInt();
-                        clear = input.nextLine();
-                        for(Book book : library) {
-                            if(book.getId() == bookOption) {
-                                book.checkOut(userName);
-                            }
-                        }
-                        System.out.println("Thank you!");
-                    }
+                    System.out.println("Thank you!");
+
+                }
+
+
             case 2:
-                //Show Checked Out Books screen
+                
             case 3:
                 //Exit
 
         }
-
+        System.out.print("Would you like to continue? ");
+        continueLetterOption = input.nextLine().trim().toUpperCase();
+        if(!continueLetterOption.equals("Y")) {
+            continueOption = false;
         }
-
     }
+        }
+    public static void optionsDisplay() {
+        System.out.println("Please select an option below: ");
+        System.out.println("1 - Show Available Books ");
+        System.out.println("2 - Show Checked Out Books ");
+        System.out.println("3 - Exit Store");
+    }
+    }
+
