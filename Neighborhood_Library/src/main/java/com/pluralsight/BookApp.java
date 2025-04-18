@@ -28,7 +28,7 @@ public class BookApp {
         library[16] = new Book(17, "9780393324815", "Moneyball", false, "");
         library[17] = new Book(18, "9780553380163", "A Brief History of Time", false, "");
         library[18] = new Book(19, "9781982103538", "The Body", false, "");
-        library[19] = new Book(20, "9780307743664", "Carrie", false, "");
+        library[19] = new Book(20, "9780307743664", "Carrie", true, "Ethan");
     while(continueOption) {
 
 
@@ -63,12 +63,33 @@ public class BookApp {
                     System.out.println("Thank you!");
 
                 }
+                break;
 
 
             case 2:
-                
+                System.out.println("Here are all the checked out books: ");
+                for(Book book : library) {
+                    if(book.isCheckedOut()) {
+                        System.out.println("ID: " + book.getId() + " ISBN: " + book.getIsbn() + " Title: " + book.getTitle() + " Name of checked out owner: " + book.getCheckedOutTo());
+                    }
+                }
+                System.out.print("Would you like to check in a book? (Y/N): ");
+                letterOption = input.nextLine().trim().toUpperCase();
+                if(letterOption.charAt(0) == 'Y'){
+                    System.out.print("Please enter the ID number of the book you want to check in: ");
+                    bookOption = input.nextInt();
+                    clear = input.nextLine();
+                    for(Book book : library) {
+                        if(book.getId() == bookOption) {
+                            book.checkIn();
+                        }
+                    }
+                    System.out.println("Thank you!");
+                }
+                break;
             case 3:
-                //Exit
+                continueOption = false;
+                break;
 
         }
         System.out.print("Would you like to continue? ");
