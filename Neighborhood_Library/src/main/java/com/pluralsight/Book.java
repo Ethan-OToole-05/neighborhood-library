@@ -52,11 +52,12 @@ public class Book {
     public void setCheckedOutTo(String checkedOutTo) {
         this.checkedOutTo = checkedOutTo;
     }
-    public static void checkOut (String name){
-
+    public void checkOut(String name){
+        this.checkedOutTo = name;
     }
-    public static void checkIn(){
-
+    public void checkIn(){
+        this.checkedOutTo = "";
+        this.isCheckedOut = false;
     }
 }
 
