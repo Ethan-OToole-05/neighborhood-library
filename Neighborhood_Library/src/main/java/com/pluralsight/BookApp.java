@@ -55,12 +55,12 @@ public class BookApp {
                         }
                     }
                     //Ask the user if they want to check out a book. Get their name and what book they want and update the book.
-                    System.out.println("Would you like to check out a book? (Y/N)");
+                    System.out.print("Would you like to check out a book? (Y/N)");
                     letterOption = input.nextLine().toUpperCase();
                     if (letterOption.charAt(0) == 'Y') {
                         System.out.print("Please enter your name to check out: ");
                         userName = input.nextLine();
-                        System.out.println("What book would you like to check out? (please select by ID number): ");
+                        System.out.print("What book would you like to check out? (please select by ID number): ");
                         bookOption = input.nextInt();
                         clear = input.nextLine();
                         for (Book book : library) {
