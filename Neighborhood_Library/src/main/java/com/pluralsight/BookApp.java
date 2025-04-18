@@ -42,7 +42,7 @@ public class BookApp {
 
             clear = input.nextLine();
             switch (option) {
-                //1 option will show all the avaiable books for the user to choose from.
+                //1 option will show all the available books for the user to choose from.
                 case 1:
                     System.out.println("Here is all of our available books:");
                     for (Book book : library) {
@@ -85,9 +85,9 @@ public class BookApp {
                         }
                     }
                     //Asks the user if they want to check in a book.
-                    System.out.print("Would you like to check in a book? (Y/N): ");
+                    System.out.print("Would you like to check in a book? (C/X): ");
                     letterOption = input.nextLine().trim().toUpperCase();
-                    if (letterOption.charAt(0) == 'Y') {
+                    if (letterOption.charAt(0) == 'C') {
                         System.out.print("Please enter the ID number of the book you want to check in: ");
                         bookOption = input.nextInt();
                         clear = input.nextLine();
