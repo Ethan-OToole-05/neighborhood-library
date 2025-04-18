@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BookApp {
     public static void main(String[] args) {
-        //Initalize scanner and variables
+        //Initialize scanner and variables
         Scanner input = new Scanner(System.in);
         int option = 0, bookOption = 0;
         boolean continueOption = true;
